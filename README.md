@@ -1,6 +1,7 @@
 # Text2Slide - Automated Slide Video Generator with Manim
 
 Text2Slide is a Python tool that converts a simple text file with slide titles and content into an animated video presentation using [Manim](https://www.manim.community/).
+For now the generated slides are very simple and there is no customization but it will come.
 
 ---
 
