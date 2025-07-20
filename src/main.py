@@ -1,38 +1,37 @@
 import sys
 import os
 import subprocess
-from datetime import datetime
 import string
 import shutil
 
-def parseslides(filename):
-    slides = []
+def parse_slides(filename):
+    _slides = []
     current_slide = None
     with open(filename, "r", encoding="utf-8") as f:
         for line in f:
             line = line.strip()
             if line.startswith("Slide"):
                 if current_slide:
-                    slides.append(current_slide)
+                    _slides.append(current_slide)
                 title = line.split(":", 1)[1].strip() if ":" in line else line
                 current_slide = {"Title": title, "Content": ""}
             else:
                 if current_slide:
                     current_slide["Content"] += line + "\n"
         if current_slide:
-            slides.append(current_slide)
-    return slides
+            _slides.append(current_slide)
+    return _slides
 
-def generate_scene_code(slides, output_name):
+def generate_scene_code(__slides):
     code = f"""
 from manim import *
 
 class ToAnim(Scene):
     def construct(self):
 """
-    for i, slide in enumerate(slides):
-        title = slides[i]['Title'].replace('"', '\\"')
-        content = slides[i]['Content'].replace('"', '\\"').replace('\n', '\\n')
+    for i, slide in enumerate(__slides):
+        title = __slides[i]['Title'].replace('"', '\\"')
+        content = __slides[i]['Content'].replace('"', '\\"').replace('\n', '\\n')
         code += f"""
         title = Text("{title}").to_edge(UP)
         content = Text("{content}").next_to(title, DOWN)
@@ -47,15 +46,14 @@ class ToAnim(Scene):
 
     return "temp_scene.py"
 
-def render_with_manim(scene_file, output_file_name, quality):
-    output_path = f"manim_files/{output_file_name}.mp4"
+def render_with_manim(_scene_file, output_name, qual):
     cmd = [
         "manim",
-        f"{quality}",               # quality: -ql (low), -qm (medium), -qk (4K)
+        f"{qual}",               # quality: -ql (low), -qm (medium), -qk (4K)
         "--disable_caching",
         "--media_dir", "manim_files",
-        "--output_file", output_file_name,
-        scene_file,
+        "--output_file", output_name,
+        _scene_file,
         "ToAnim"
     ]
     subprocess.run(cmd)
@@ -95,8 +93,8 @@ if __name__ == "__main__":
     if not os.path.exists("output"):
         os.mkdir("output")
 
-    slides = parseslides(input_file)
-    scene_file = generate_scene_code(slides, output_file_name)
+    slides = parse_slides(input_file)
+    scene_file = generate_scene_code(slides)
     render_with_manim(scene_file, output_file_name, quality)
     video_dir = f"manim_files/videos/temp_scene/{dir_name}/{output_file_name}.mp4"
     if not os.path.exists(video_dir):
