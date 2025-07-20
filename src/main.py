@@ -1,6 +1,8 @@
 import os
 import subprocess
 import shutil
+import sys
+import string
 
 def parse_slides(filename):
     _slides = []
@@ -57,9 +59,6 @@ def render_with_manim(_scene_file, output_name, qual):
     subprocess.run(cmd)
 
 if __name__ == "__main__":
-    import sys
-    import string
-
     if len(sys.argv) == 2 and sys.argv[1] == "--help":
         print("""\
 Usage: python text2slide.py input.txt <Quality> <OutputFileName>
