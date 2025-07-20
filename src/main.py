@@ -100,7 +100,7 @@ if __name__ == "__main__":
     render_with_manim(scene_file, output_file_name, quality)
     video_dir = f"manim_files/videos/temp_scene/{dir_name}/{output_file_name}.mp4"
     if not os.path.exists(video_dir):
-        print(f"Errore: Il file {video_dir} non esiste. Il rendering potrebbe essere fallito.")
+        print(f"Error: {video_dir} doesn't exist. Rendering may have failed.")
         sys.exit(1)
     final_path = f"output/{output_file_name}.mp4"
     shutil.move(video_dir, final_path)
@@ -108,4 +108,4 @@ if __name__ == "__main__":
     if os.path.exists(temp_scene_dir):
         shutil.rmtree(temp_scene_dir)  
     os.remove(scene_file)
-    print(f"\nVideo generato in: {final_path}")
+    print(f"\nVideo generated at: {final_path}")

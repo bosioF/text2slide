@@ -8,7 +8,6 @@ manim_files/
 manim-env/
 
 # OS files
-ciao.txt
 .DS_Store
 Thumbs.db
 
