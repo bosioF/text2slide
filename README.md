@@ -1,7 +1,7 @@
 # Text2Slide - Animated Slideshow Generator with Manim
 
 Text2Slide is a Python tool that converts a simple text file with slide titles and content into an animated video presentation using [Manim](https://www.manim.community/).
-For now the generated slides are very simple and there is no customization but it will come.
+For now, the generated slides are basic, and there is no customization, but it will come.
 
 ---
 
@@ -15,6 +15,7 @@ For now the generated slides are very simple and there is no customization but i
   - `-qh`: High (1080p, 60 FPS)  
   - `-qp`: 2K (1440p, 60 FPS)  
   - `-qk`: 4K (2160p, 60 FPS)
+- Various Text Colors.
 - Outputs the final video in a dedicated `output/` folder.
 - Cleans up temporary files after rendering.
 
@@ -23,12 +24,13 @@ For now the generated slides are very simple and there is no customization but i
 ## Usage
 
 ```bash
-python main.py input.txt <quality> <output_filename>
+python main.py input.txt <quality> <output_filename> OR --help
 ````
 
 * `input.txt`: Path to the input text file with slide data.
 * `<quality>`: Render quality flag. Choose one of `-ql`, `-qm`, `-qh`, `-qp`, or `-qk`.
 * `<output_filename>`: Desired name for the output video file (without extension).
+* `--help`: Open the help page
 
 Example:
 
@@ -54,7 +56,7 @@ More content here
 ```
 
 * Each slide starts with a line beginning with `Slide X:`.
-* Subsequent lines until the next `Slide` header are considered the slide content.
+* Later lines until the next `Slide` header are considered the slide content.
 
 ---
 
