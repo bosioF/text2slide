@@ -79,25 +79,15 @@ if __name__ == "__main__":
     output_file_name = sys.argv[3]
     quality = sys.argv[2]
     
-    quality_to_k = {
-    "-ql": 1,  # 854x480 15FPS
-    "-qm": 2,  # 1280x720 30FPS
-    "-qh": 3,  # 1920x1080 60FPS
-    "-qp": 4,  # 2560x1440 60FPS
-    "-qk": 5   # 3840x2160 60FPS
+    quality_to_dirName = {
+    "-ql": "480p15",  # 854x480 15FPS
+    "-qm": "720p60",  # 1280x720 30FPS
+    "-qh": "1080p60",  # 1920x1080 60FPS
+    "-qp": "1440p60",  # 2560x1440 60FPS
+    "-qk": "2160p60"   # 3840x2160 60FPS
     }
 
-    k = quality_to_k.get(quality)
-
-    k_to_dir_name = {
-        1:'480p15',
-        2:'720p30',
-        3:'1080p60',
-        4:'1440p60',
-        5:'2160p60'
-    }
-
-    dir_name = k_to_dir_name.get(k)
+    dir_name = quality_to_dirName.get(quality)
 
     if not os.path.exists("manim_files"):
         os.mkdir("manim_files")
