@@ -1,24 +1,11 @@
-# Byte-compiled / cache files
 __pycache__/
 *.py[cod]
-
-# Manim cache and media
 output/
 manim_files/
 manim-env/
-
-# OS files
-.DS_Store
-Thumbs.db
-
-# Virtual environments
 .venv/
 env/
 venv/
-
-# Logs and system files
 *.log
-
-# VSCode / JetBrains settings
 .vscode/
 .idea/
