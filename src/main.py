@@ -1,8 +1,8 @@
-import os
+import time
 import subprocess
 import shutil
-import sys
 import string
+from moviepy.editor import *
 from help import *
 
 def parse_slides(filename):
@@ -64,13 +64,15 @@ if __name__ == "__main__":
         print(HELP_MSG)
         sys.exit(0)
 
-    if len(sys.argv) != 4:
+    if len(sys.argv) not in [4, 5]:
         print(USAGE_MSG)
+        print("\nOptionally, provide an MP3 path as a 4th argument.")
         sys.exit(1)
 
     input_file = sys.argv[1]
     quality = sys.argv[2]
     output_file_name = sys.argv[3]
+    audio_path = sys.argv[4] if len(sys.argv) == 5 else None
 
     if quality not in ['-ql', '-qm', '-qh', '-qp', '-qk']:
         print('Quality options: -ql (low), -qm (medium), -qh (high), -qp (2K), -qk (4K)')
@@ -120,4 +122,25 @@ if __name__ == "__main__":
     if os.path.exists(temp_scene_dir):
         shutil.rmtree(temp_scene_dir)  
     os.remove(scene_file)
+    if audio_path:
+        for _ in range(10):
+            if os.path.exists(final_path) and os.path.getsize(final_path) > 1000:
+                break
+            time.sleep(0.5)
+        try:
+            video = VideoFileClip(final_path)
+            audio = AudioFileClip(audio_path)
+            if audio.duration > video.duration:
+                audio = audio.subclip(0, video.duration)
+            final = video.set_audio(audio)
+            final_with_audio_path = final_path.replace(".mp4", "_with_audio.mp4")
+            final.write_videofile(final_with_audio_path, codec="libx264", audio_codec="aac")
+
+            os.remove(final_path)
+            shutil.move(final_with_audio_path, final_path)
+            print("Audio added successfully.")
+
+        except Exception as e:
+            print(f"Failed to add audio: {e}")
+
     print(f"\nVideo generated at: {final_path}")
