@@ -3,6 +3,7 @@ import subprocess
 import shutil
 import sys
 import string
+from help import *
 
 def parse_slides(filename):
     _slides = []
@@ -60,44 +61,11 @@ def render_with_manim(_scene_file, output_name, qual):
 
 if __name__ == "__main__":
     if len(sys.argv) == 2 and sys.argv[1] == "--help":
-        print("""\
-Usage: python text2slide.py input.txt <Quality> <OutputFileName>
-
-Quality flags:
--ql\t480p 15fps
--qm\t720p 60fps
--qh\t1080p 60fps
--qp\t1440p 60fps
--qk\t2160p 60fps
-
-Available colors:
-
-Basic:
-    BLACK, WHITE, RED, GREEN, BLUE, YELLOW, ORANGE, PINK, PURPLE, TEAL, GOLD, MAROON, GRAY, GREY
-
-Variants (use with base names):
-    *_A, *_B, *_C, *_D, *_E
-    Example: RED_A, GREEN_E, BLUE_C, GOLD_D
-
-Shades:
-    DARK_GRAY, DARK_GREY, DARKER_GRAY, DARKER_GREY, DARK_BLUE, DARK_BROWN,
-    LIGHT_GRAY, LIGHT_GREY, LIGHTER_GRAY, LIGHTER_GREY, LIGHT_BROWN, LIGHT_PINK
-
-Grays:
-    GRAY_A, GRAY_B, GRAY_C, GRAY_D, GRAY_E, GRAY_BROWN,
-    GREY_A, GREY_B, GREY_C, GREY_D, GREY_E, GREY_BROWN
-
-Logo colors:
-    LOGO_BLACK, LOGO_WHITE, LOGO_RED, LOGO_GREEN, LOGO_BLUE
-
-Pure RGB:
-    PURE_RED (#FF0000), PURE_GREEN (#00FF00), PURE_BLUE (#0000FF)
-
-Use any color name as shown above. Names are case-sensitive.""")
+        print(HELP_MSG)
         sys.exit(0)
 
     if len(sys.argv) != 4:
-        print("Usage: python text2slide.py input.txt <Quality> <OutputFileName> OR --help")
+        print(USAGE_MSG)
         sys.exit(1)
 
     input_file = sys.argv[1]
@@ -117,7 +85,7 @@ Use any color name as shown above. Names are case-sensitive.""")
         print("Invalid output file name. Only letters, digits, '-' and '_' allowed.")
         sys.exit(1)
 
-    color = input("What color should the text be?")
+    color = input("What color should the text be?").upper()
     color_names = [
         "BLACK",
         "BLUE",
