@@ -1,10 +1,10 @@
-Slide 1: Introduzione
-ciao :))
+Slide 1: Title
+content
 
-Slide 2: Obiettivi
-- Spiegare il progetto
-- Mostrare un esempio
+Slide 2: Title
+- Content
+- Content
 
 
-Slide 3: Conclusione
-Grazie per l'attenzione!
+Slide 3: Title
+Content! :))
