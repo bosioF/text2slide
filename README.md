@@ -87,7 +87,7 @@ pip install -r requirements.txt
 ## Project Structure
 
 ```
-main_files/ (created after generating the first video)
+manim_files/ (created after generating the first video)
 output/ (created after generating the first video)
 src/audio.py
 src/backend.py
