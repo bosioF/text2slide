@@ -7,24 +7,26 @@ For now, the generated slides are basic, and there is no customization, but it w
 
 ## Features
 
-- Parses a plain text file structured with slide titles and content.
-- Automatically generates a Manim scene from the slides.
+- Parses a plain text file structured with slide titles and content.  
+- Automatically generates a Manim scene from the slides.  
 - Supports rendering videos at multiple quality levels:  
   - `-ql`: Low (480p, 15 FPS)  
   - `-qm`: Medium (720p, 30 FPS)  
   - `-qh`: High (1080p, 60 FPS)  
   - `-qp`: 2K (1440p, 60 FPS)  
-  - `-qk`: 4K (2160p, 60 FPS)
-- Various Text Colors.
-- Outputs the final video in a dedicated `output/` folder.
-- Cleans up temporary files after rendering.
+  - `-qk`: 4K (2160p, 60 FPS)  
+- Supports various text colors (see `--help`).  
+- Outputs the final video in a dedicated `output/` folder.  
+- Cleans up temporary files after rendering.  
 
 ---
 
 ## Usage
 
 ```bash
-python main.py input.txt <quality> <output_filename> OR --help
+python src/main.py input.txt <quality> <output_filename>
+# or
+python src/main.py --help
 ````
 
 * `input.txt`: Path to the input text file with slide data.
