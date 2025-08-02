@@ -86,9 +86,13 @@ COLOR_NAMES = [
 "YELLOW_D",
 "YELLOW_E"
 ]
-USAGE_MSG="Usage: python src/main.py input.txt <Quality> <OutputFileName> OR --help"
+USAGE_MSG=("Usage: python src/main.py input.txt <Quality> <OutputFileName> [audio.mp3]"
+           "python src/main.py --help")
 HELP_MSG="""\
-Usage: python src/main.py input.txt <Quality> <OutputFileName> OR --help (to open this menu)
+For CLI:
+Usage: python src/main.py input.txt <Quality> <OutputFileName> [audio.mp3]\npython src/main.py --help
+For GUI:
+python src/gui.py
 
 Quality flags:
 -ql\t480p 15fps
