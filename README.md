@@ -29,7 +29,7 @@ For now, the generated slides are basic, and there is no major customization oth
 python src/main.py input.txt <quality> <output_filename> [audio.mp3]
 # or
 python src/main.py --help
-# For UI:
+# For GUI:
 python src/gui.py
 ```
 
